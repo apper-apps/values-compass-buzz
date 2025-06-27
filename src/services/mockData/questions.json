@@ -1,79 +1,77 @@
 [
   {
     "Id": 1,
-    "text": "When making important life decisions, what matters most to you?",
-    "type": "single-choice",
+    "text": "Below are core human values. Sort them into three groups based on their importance to you personally:",
+    "type": "standard-elicitation",
     "options": [
-      "Financial security and stability",
-      "Personal growth and learning",
-      "Helping others and making a difference",
-      "Creative expression and innovation",
-      "Adventure and new experiences"
+      "Honesty and Integrity",
+      "Family and Relationships",
+      "Achievement and Success",
+      "Independence and Freedom",
+      "Compassion and Helping Others",
+      "Security and Stability",
+      "Adventure and Excitement",
+      "Knowledge and Learning",
+      "Creativity and Self-Expression",
+      "Justice and Fairness",
+      "Spirituality and Meaning",
+      "Health and Wellbeing"
     ],
-    "category": "core-priorities",
-    "weight": 1.0
+    "buckets": ["Most Important", "Moderately Important", "Least Important"],
+    "category": "core-elicitation",
+    "weight": 1.5
   },
   {
     "Id": 2,
-    "text": "How important is work-life balance to you?",
-    "type": "slider",
-    "options": ["Not important", "Somewhat important", "Very important", "Extremely important"],
-    "category": "lifestyle",
-    "weight": 0.8
+    "text": "Compare these pairs of values and choose which is more important to you in each pair:",
+    "type": "values-comparison",
+    "options": [
+      ["Personal Growth", "Financial Security"],
+      ["Family Time", "Career Success"],
+      ["Helping Others", "Personal Achievement"],
+      ["Stability", "Adventure"],
+      ["Independence", "Community"],
+      ["Tradition", "Innovation"]
+    ],
+    "category": "comparative-elicitation",
+    "weight": 1.3
   },
   {
     "Id": 3,
-    "text": "Rank these values in order of importance to you:",
-    "type": "ranking",
+    "text": "Organize these life values into importance levels by dragging them into the appropriate categories:",
+    "type": "values-sorting",
     "options": [
-      "Honesty and integrity",
-      "Achievement and success", 
-      "Family and relationships",
-      "Independence and freedom",
-      "Security and stability"
+      "Work-Life Balance",
+      "Recognition and Status",
+      "Making a Difference",
+      "Personal Freedom",
+      "Close Relationships",
+      "Continuous Learning",
+      "Financial Prosperity",
+      "Physical Health",
+      "Moral Principles",
+      "Cultural Heritage"
     ],
-    "category": "core-values",
-    "weight": 1.2
+    "categories": ["Essential", "Very Important", "Important", "Less Important"],
+    "category": "hierarchical-elicitation",
+    "weight": 1.4
   },
   {
     "Id": 4,
-    "text": "In your ideal career, which of these would you prioritize? (Select all that apply)",
-    "type": "multiple-choice",
+    "text": "When making important life decisions, what matters most to you?",
+    "type": "single-choice",
     "options": [
-      "High salary and benefits",
-      "Meaningful work that aligns with my values",
-      "Opportunities for advancement",
-      "Flexible schedule and remote work options",
-      "Collaborative and supportive team environment",
-      "Recognition and appreciation for my contributions"
+      "What aligns with my personal values",
+      "What benefits my family and loved ones",
+      "What leads to personal growth and learning",
+      "What provides security and stability",
+      "What allows me to help others"
     ],
-    "category": "career",
-    "weight": 0.9
+    "category": "decision-making",
+    "weight": 1.0
   },
   {
     "Id": 5,
-    "text": "How much do you value tradition and established ways of doing things?",
-    "type": "slider",
-    "options": ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
-    "category": "worldview",
-    "weight": 0.7
-  },
-  {
-    "Id": 6,
-    "text": "When facing a moral dilemma, what guides your decision-making?",
-    "type": "single-choice",
-    "options": [
-      "What will cause the least harm to others",
-      "What is right according to my principles",
-      "What will lead to the best outcome for everyone",
-      "What feels right in my heart",
-      "What respected authorities or traditions say"
-    ],
-    "category": "ethics",
-    "weight": 1.1
-  },
-  {
-    "Id": 7,
     "text": "Rate how important these aspects of life are to you:",
     "type": "rating-scale",
     "options": [
@@ -81,52 +79,95 @@
       "Mental and emotional wellbeing",
       "Spiritual or philosophical growth",
       "Social connections and community",
-      "Intellectual stimulation and learning"
+      "Intellectual stimulation and learning",
+      "Creative expression and artistry",
+      "Environmental stewardship",
+      "Social justice and equality"
     ],
-    "category": "wellbeing",
+    "category": "life-aspects",
     "weight": 0.9
+  },
+  {
+    "Id": 6,
+    "text": "Below are workplace values. Sort them based on how much they would influence your career choices:",
+    "type": "standard-elicitation",
+    "options": [
+      "Meaningful Work",
+      "High Compensation",
+      "Flexible Schedule",
+      "Career Advancement",
+      "Collaborative Environment",
+      "Job Security",
+      "Work Autonomy",
+      "Learning Opportunities",
+      "Company Values Alignment",
+      "Recognition and Appreciation"
+    ],
+    "buckets": ["Critical for Me", "Nice to Have", "Not Important"],
+    "category": "career-elicitation",
+    "weight": 1.2
+  },
+  {
+    "Id": 7,
+    "text": "Consider these relationship values and organize them by priority in your personal relationships:",
+    "type": "values-sorting",
+    "options": [
+      "Trust and Honesty",
+      "Mutual Support",
+      "Shared Values",
+      "Personal Space",
+      "Open Communication",
+      "Loyalty and Commitment",
+      "Fun and Enjoyment",
+      "Growth Together"
+    ],
+    "categories": ["Must Have", "Very Important", "Somewhat Important", "Optional"],
+    "category": "relationship-elicitation",
+    "weight": 1.1
   },
   {
     "Id": 8,
     "text": "What motivates you most in your daily life?",
     "type": "single-choice",
     "options": [
-      "Making progress toward my goals",
-      "Connecting with people I care about",
-      "Learning something new",
-      "Creating or building something",
-      "Helping solve problems for others"
+      "Making progress toward meaningful goals",
+      "Connecting deeply with people I care about",
+      "Learning and discovering new things",
+      "Creating and building something valuable",
+      "Helping solve problems for others",
+      "Experiencing beauty and inspiration"
     ],
-    "category": "motivation",
+    "category": "daily-motivation",
     "weight": 1.0
   },
   {
     "Id": 9,
-    "text": "How do you prefer to spend your free time?",
-    "type": "multiple-choice",
+    "text": "Compare these life philosophy pairs and select which resonates more with you:",
+    "type": "values-comparison",
     "options": [
-      "Pursuing hobbies and personal interests",
-      "Spending quality time with family and friends",
-      "Volunteering or helping in my community",
-      "Relaxing and recharging at home",
-      "Exploring new places and experiences",
-      "Working on personal development"
+      ["Living in the moment", "Planning for the future"],
+      ["Individual achievement", "Collective harmony"],
+      ["Rational thinking", "Emotional intuition"],
+      ["Challenging conventions", "Respecting traditions"],
+      ["Taking risks", "Seeking security"],
+      ["Leading others", "Supporting others"]
     ],
-    "category": "lifestyle",
-    "weight": 0.8
+    "category": "philosophy-comparison",
+    "weight": 1.2
   },
   {
     "Id": 10,
-    "text": "When you look back on your life, what do you hope to be remembered for?",
+    "text": "When you imagine your ideal life legacy, what would be most important to you?",
     "type": "single-choice",
     "options": [
-      "The positive impact I had on others",
-      "My achievements and accomplishments",
-      "The love and relationships I built",
-      "My creativity and unique contributions",
-      "My integrity and character"
+      "The positive impact I had on others' lives",
+      "The knowledge and wisdom I shared",
+      "The creative works or innovations I contributed",
+      "The strong family and relationships I built",
+      "The principles and integrity I maintained",
+      "The adventures and experiences I lived"
     ],
-    "category": "legacy",
+    "category": "legacy-values",
     "weight": 1.3
   }
 ]

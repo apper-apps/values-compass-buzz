@@ -49,8 +49,244 @@ const QuestionCard = ({
     handleRanking(newItems)
   }
 
+const handleStandardElicitation = (bucketAssignments) => {
+    setSelectedValue(bucketAssignments)
+    onAnswer(bucketAssignments)
+  }
+
+  const handleValuesComparison = (comparisons) => {
+    setSelectedValue(comparisons)
+    onAnswer(comparisons)
+  }
+
+  const handleValuesSorting = (categoryAssignments) => {
+    setSelectedValue(categoryAssignments)
+    onAnswer(categoryAssignments)
+  }
+
   const renderInput = () => {
     switch (question.type) {
+      case 'standard-elicitation':
+        return (
+          <div className="space-y-6">
+            <Text variant="body-sm" color="muted" className="mb-4">
+              Drag values into the appropriate importance groups
+            </Text>
+            
+            {/* Buckets */}
+            <div className="grid gap-4 md:grid-cols-3">
+              {question.buckets.map((bucket, bucketIndex) => {
+                const bucketItems = (selectedValue || {})[bucket] || []
+                return (
+                  <div key={bucket} className="space-y-2">
+                    <Text variant="body-sm" weight="medium" className="text-center p-2 bg-gray-100 rounded-lg">
+                      {bucket}
+                    </Text>
+                    <div 
+                      className="min-h-32 p-3 border-2 border-dashed border-gray-300 rounded-lg space-y-2"
+                      onDrop={(e) => {
+                        e.preventDefault()
+                        const draggedValue = e.dataTransfer.getData('text/plain')
+                        const newAssignments = { ...(selectedValue || {}) }
+                        
+                        // Remove from other buckets
+                        question.buckets.forEach(b => {
+                          if (newAssignments[b]) {
+                            newAssignments[b] = newAssignments[b].filter(item => item !== draggedValue)
+                          }
+                        })
+                        
+                        // Add to this bucket
+                        if (!newAssignments[bucket]) newAssignments[bucket] = []
+                        if (!newAssignments[bucket].includes(draggedValue)) {
+                          newAssignments[bucket].push(draggedValue)
+                        }
+                        
+                        handleStandardElicitation(newAssignments)
+                      }}
+                      onDragOver={(e) => e.preventDefault()}
+                    >
+                      {bucketItems.map((item, itemIndex) => (
+                        <motion.div
+                          key={item}
+                          className="p-2 bg-white border border-gray-200 rounded text-sm cursor-move hover:shadow-sm"
+                          whileHover={{ scale: 1.02 }}
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', item)
+                          }}
+                        >
+                          {item}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+            
+            {/* Available Values */}
+            <div className="space-y-2">
+              <Text variant="body-sm" weight="medium">Available Values:</Text>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                {question.options.filter(option => {
+                  const assignments = selectedValue || {}
+                  return !question.buckets.some(bucket => 
+                    assignments[bucket] && assignments[bucket].includes(option)
+                  )
+                }).map((value, index) => (
+                  <motion.div
+                    key={value}
+                    className="p-3 bg-gray-50 border-2 border-gray-200 rounded-lg text-sm cursor-move hover:border-gray-300 hover:shadow-sm"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    draggable
+                    onDragStart={(e) => {
+                      e.dataTransfer.setData('text/plain', value)
+                    }}
+                  >
+                    {value}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )
+
+      case 'values-comparison':
+        return (
+          <div className="space-y-4">
+            <Text variant="body-sm" color="muted" className="mb-4">
+              Choose which value is more important to you in each pair
+            </Text>
+            {question.options.map((pair, pairIndex) => {
+              const currentChoice = (selectedValue || {})[pairIndex]
+              return (
+                <div key={pairIndex} className="p-4 bg-gray-50 rounded-lg space-y-3">
+                  <Text variant="body-sm" weight="medium" className="text-center">
+                    Pair {pairIndex + 1}: Which is more important?
+                  </Text>
+                  <div className="flex items-center justify-center space-x-4">
+                    {pair.map((value, index) => (
+                      <motion.button
+                        key={value}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => {
+                          const newComparisons = { ...(selectedValue || {}) }
+                          newComparisons[pairIndex] = value
+                          handleValuesComparison(newComparisons)
+                        }}
+                        className={`flex-1 p-3 rounded-lg border-2 transition-all ${
+                          currentChoice === value
+                            ? 'border-primary bg-primary/5 text-primary'
+                            : 'border-gray-200 hover:border-gray-300'
+                        }`}
+                      >
+                        <Text variant="body-sm" className="text-center">{value}</Text>
+                      </motion.button>
+                    ))}
+                  </div>
+                  {currentChoice && (
+                    <div className="text-center">
+                      <Text variant="caption" color="primary">
+                        Selected: {currentChoice}
+                      </Text>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )
+
+      case 'values-sorting':
+        return (
+          <div className="space-y-6">
+            <Text variant="body-sm" color="muted" className="mb-4">
+              Organize values by importance level - drag them into the appropriate categories
+            </Text>
+            
+            {/* Categories */}
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {question.categories.map((category, categoryIndex) => {
+                const categoryItems = (selectedValue || {})[category] || []
+                return (
+                  <div key={category} className="space-y-2">
+                    <Text variant="body-sm" weight="medium" className="text-center p-2 bg-gradient-to-r from-primary to-primary-dark text-white rounded-lg">
+                      {category}
+                    </Text>
+                    <div 
+                      className="min-h-24 p-3 border-2 border-dashed border-gray-300 rounded-lg space-y-2"
+                      onDrop={(e) => {
+                        e.preventDefault()
+                        const draggedValue = e.dataTransfer.getData('text/plain')
+                        const newAssignments = { ...(selectedValue || {}) }
+                        
+                        // Remove from other categories
+                        question.categories.forEach(cat => {
+                          if (newAssignments[cat]) {
+                            newAssignments[cat] = newAssignments[cat].filter(item => item !== draggedValue)
+                          }
+                        })
+                        
+                        // Add to this category
+                        if (!newAssignments[category]) newAssignments[category] = []
+                        if (!newAssignments[category].includes(draggedValue)) {
+                          newAssignments[category].push(draggedValue)
+                        }
+                        
+                        handleValuesSorting(newAssignments)
+                      }}
+                      onDragOver={(e) => e.preventDefault()}
+                    >
+                      {categoryItems.map((item, itemIndex) => (
+                        <motion.div
+                          key={item}
+                          className="p-2 bg-white border border-gray-200 rounded text-sm cursor-move hover:shadow-sm"
+                          whileHover={{ scale: 1.02 }}
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.setData('text/plain', item)
+                          }}
+                        >
+                          {item}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+            
+            {/* Available Values */}
+            <div className="space-y-2">
+              <Text variant="body-sm" weight="medium">Available Values:</Text>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                {question.options.filter(option => {
+                  const assignments = selectedValue || {}
+                  return !question.categories.some(category => 
+                    assignments[category] && assignments[category].includes(option)
+                  )
+                }).map((value, index) => (
+                  <motion.div
+                    key={value}
+                    className="p-3 bg-blue-50 border-2 border-blue-200 rounded-lg text-sm cursor-move hover:border-blue-300 hover:shadow-sm"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    draggable
+                    onDragStart={(e) => {
+                      e.dataTransfer.setData('text/plain', value)
+                    }}
+                  >
+                    {value}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )
+
       case 'single-choice':
         return (
           <div className="space-y-3">

@@ -87,8 +87,8 @@ const AssessmentFlow = ({ framework = 'Personal Values Framework' }) => {
     }
   }
 
-  const calculateResults = (answers) => {
-    // Mock calculation logic - in a real app, this would be more sophisticated
+const calculateResults = (answers) => {
+    // Enhanced calculation logic for standard elicitation methods
     const valueScores = {
       'Growth': 0,
       'Integrity': 0,
@@ -96,37 +96,114 @@ const AssessmentFlow = ({ framework = 'Personal Values Framework' }) => {
       'Family': 0,
       'Independence': 0,
       'Compassion': 0,
-      'Achievement': 0
+      'Achievement': 0,
+      'Security': 0,
+      'Creativity': 0,
+      'Justice': 0
     }
 
-    // Simple scoring based on answer patterns
+    // Process different types of elicitation responses
     Object.values(answers).forEach(answer => {
-      if (typeof answer.value === 'string') {
-        if (answer.value.includes('growth') || answer.value.includes('learning')) {
-          valueScores['Growth'] += 15
+      const value = answer.value
+
+      // Handle standard elicitation (bucket sorting)
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        // Check if it's bucket assignments
+        if (value['Most Important']) {
+          value['Most Important'].forEach(item => {
+            Object.keys(valueScores).forEach(key => {
+              if (item.toLowerCase().includes(key.toLowerCase()) || 
+                  item.toLowerCase().includes('honesty') && key === 'Integrity' ||
+                  item.toLowerCase().includes('helping') && key === 'Compassion' ||
+                  item.toLowerCase().includes('success') && key === 'Achievement') {
+                valueScores[key] += 25
+              }
+            })
+          })
         }
-        if (answer.value.includes('honest') || answer.value.includes('integrity')) {
-          valueScores['Integrity'] += 15
+        
+        if (value['Moderately Important']) {
+          value['Moderately Important'].forEach(item => {
+            Object.keys(valueScores).forEach(key => {
+              if (item.toLowerCase().includes(key.toLowerCase()) ||
+                  item.toLowerCase().includes('honesty') && key === 'Integrity' ||
+                  item.toLowerCase().includes('helping') && key === 'Compassion') {
+                valueScores[key] += 15
+              }
+            })
+          })
         }
-        if (answer.value.includes('balance') || answer.value.includes('family')) {
-          valueScores['Balance'] += 10
-          valueScores['Family'] += 10
+
+        // Handle values sorting (category assignments)
+        if (value['Essential']) {
+          value['Essential'].forEach(item => {
+            Object.keys(valueScores).forEach(key => {
+              if (item.toLowerCase().includes(key.toLowerCase()) ||
+                  item.toLowerCase().includes('principles') && key === 'Integrity') {
+                valueScores[key] += 30
+              }
+            })
+          })
         }
-        if (answer.value.includes('independent') || answer.value.includes('freedom')) {
-          valueScores['Independence'] += 15
+
+        if (value['Very Important']) {
+          value['Very Important'].forEach(item => {
+            Object.keys(valueScores).forEach(key => {
+              if (item.toLowerCase().includes(key.toLowerCase())) {
+                valueScores[key] += 20
+              }
+            })
+          })
         }
-        if (answer.value.includes('help') || answer.value.includes('others')) {
-          valueScores['Compassion'] += 15
-        }
-        if (answer.value.includes('achieve') || answer.value.includes('success')) {
-          valueScores['Achievement'] += 15
-        }
+
+        // Handle comparison results
+        Object.values(value).forEach(choice => {
+          if (typeof choice === 'string') {
+            Object.keys(valueScores).forEach(key => {
+              if (choice.toLowerCase().includes(key.toLowerCase()) ||
+                  choice.toLowerCase().includes('growth') && key === 'Growth' ||
+                  choice.toLowerCase().includes('security') && key === 'Security') {
+                valueScores[key] += 12
+              }
+            })
+          }
+        })
+      }
+
+      // Handle string responses (single choice)
+      if (typeof value === 'string') {
+        Object.keys(valueScores).forEach(key => {
+          if (value.toLowerCase().includes(key.toLowerCase()) ||
+              value.includes('growth') || value.includes('learning') && key === 'Growth' ||
+              value.includes('honest') || value.includes('integrity') && key === 'Integrity' ||
+              value.includes('balance') || value.includes('family') && key === 'Balance' ||
+              value.includes('independent') || value.includes('freedom') && key === 'Independence' ||
+              value.includes('help') || value.includes('others') && key === 'Compassion' ||
+              value.includes('achieve') || value.includes('success') && key === 'Achievement') {
+            valueScores[key] += 15
+          }
+        })
+      }
+
+      // Handle rating scale responses
+      if (typeof value === 'object' && typeof value[0] === 'number') {
+        // This is a rating scale response
+        Object.values(value).forEach((rating, index) => {
+          if (rating >= 4) { // High ratings (4-5)
+            Object.keys(valueScores).forEach(key => {
+              if (index === 0 && key === 'Health') valueScores[key] += rating * 3
+              if (index === 1 && key === 'Balance') valueScores[key] += rating * 3
+              if (index === 2 && key === 'Growth') valueScores[key] += rating * 3
+              if (index === 3 && key === 'Compassion') valueScores[key] += rating * 3
+            })
+          }
+        })
       }
     })
 
-    // Add some randomness for variety
+    // Add baseline scores and some variance
     Object.keys(valueScores).forEach(key => {
-      valueScores[key] += Math.floor(Math.random() * 30) + 50
+      valueScores[key] += Math.floor(Math.random() * 25) + 40
     })
 
     // Convert to results format
