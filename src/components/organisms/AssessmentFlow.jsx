@@ -11,7 +11,7 @@ import ErrorState from '@/components/molecules/ErrorState'
 import questionService from '@/services/api/questionService'
 import assessmentService from '@/services/api/assessmentService'
 
-const AssessmentFlow = ({ framework = 'Personal Values Framework' }) => {
+const AssessmentFlow = ({ framework = { name: 'Personal Values Framework', id: 'personal' } }) => {
   const navigate = useNavigate()
   const [questions, setQuestions] = useState([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -67,15 +67,15 @@ const AssessmentFlow = ({ framework = 'Personal Values Framework' }) => {
     setSaving(true)
     try {
       // Calculate mock results based on answers
-      const results = calculateResults(answers)
+const results = calculateResults(answers)
       
       const assessmentData = {
-        framework,
+        framework: typeof framework === 'object' ? framework.name : framework,
+        frameworkId: typeof framework === 'object' ? framework.id : 'default',
         answers: Object.values(answers),
         results,
         completed: true
       }
-
       await assessmentService.create(assessmentData)
       toast.success('Assessment completed successfully!')
       navigate('/results')

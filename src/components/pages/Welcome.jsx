@@ -175,11 +175,11 @@ const Welcome = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4 + index * 0.1 }}
-              >
+>
                 <Card 
                   className="p-6 cursor-pointer transition-all duration-200"
                   hover={true}
-                  onClick={() => navigate('/assessment', { state: { framework: framework.name } })}
+                  onClick={() => navigate('/assessment', { state: { framework } })}
                 >
                   <div className="space-y-4">
                     <div>
