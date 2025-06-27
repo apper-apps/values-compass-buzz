@@ -1,0 +1,132 @@
+[
+  {
+    "Id": 1,
+    "text": "When making important life decisions, what matters most to you?",
+    "type": "single-choice",
+    "options": [
+      "Financial security and stability",
+      "Personal growth and learning",
+      "Helping others and making a difference",
+      "Creative expression and innovation",
+      "Adventure and new experiences"
+    ],
+    "category": "core-priorities",
+    "weight": 1.0
+  },
+  {
+    "Id": 2,
+    "text": "How important is work-life balance to you?",
+    "type": "slider",
+    "options": ["Not important", "Somewhat important", "Very important", "Extremely important"],
+    "category": "lifestyle",
+    "weight": 0.8
+  },
+  {
+    "Id": 3,
+    "text": "Rank these values in order of importance to you:",
+    "type": "ranking",
+    "options": [
+      "Honesty and integrity",
+      "Achievement and success", 
+      "Family and relationships",
+      "Independence and freedom",
+      "Security and stability"
+    ],
+    "category": "core-values",
+    "weight": 1.2
+  },
+  {
+    "Id": 4,
+    "text": "In your ideal career, which of these would you prioritize? (Select all that apply)",
+    "type": "multiple-choice",
+    "options": [
+      "High salary and benefits",
+      "Meaningful work that aligns with my values",
+      "Opportunities for advancement",
+      "Flexible schedule and remote work options",
+      "Collaborative and supportive team environment",
+      "Recognition and appreciation for my contributions"
+    ],
+    "category": "career",
+    "weight": 0.9
+  },
+  {
+    "Id": 5,
+    "text": "How much do you value tradition and established ways of doing things?",
+    "type": "slider",
+    "options": ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
+    "category": "worldview",
+    "weight": 0.7
+  },
+  {
+    "Id": 6,
+    "text": "When facing a moral dilemma, what guides your decision-making?",
+    "type": "single-choice",
+    "options": [
+      "What will cause the least harm to others",
+      "What is right according to my principles",
+      "What will lead to the best outcome for everyone",
+      "What feels right in my heart",
+      "What respected authorities or traditions say"
+    ],
+    "category": "ethics",
+    "weight": 1.1
+  },
+  {
+    "Id": 7,
+    "text": "Rate how important these aspects of life are to you:",
+    "type": "rating-scale",
+    "options": [
+      "Physical health and fitness",
+      "Mental and emotional wellbeing",
+      "Spiritual or philosophical growth",
+      "Social connections and community",
+      "Intellectual stimulation and learning"
+    ],
+    "category": "wellbeing",
+    "weight": 0.9
+  },
+  {
+    "Id": 8,
+    "text": "What motivates you most in your daily life?",
+    "type": "single-choice",
+    "options": [
+      "Making progress toward my goals",
+      "Connecting with people I care about",
+      "Learning something new",
+      "Creating or building something",
+      "Helping solve problems for others"
+    ],
+    "category": "motivation",
+    "weight": 1.0
+  },
+  {
+    "Id": 9,
+    "text": "How do you prefer to spend your free time?",
+    "type": "multiple-choice",
+    "options": [
+      "Pursuing hobbies and personal interests",
+      "Spending quality time with family and friends",
+      "Volunteering or helping in my community",
+      "Relaxing and recharging at home",
+      "Exploring new places and experiences",
+      "Working on personal development"
+    ],
+    "category": "lifestyle",
+    "weight": 0.8
+  },
+  {
+    "Id": 10,
+    "text": "When you look back on your life, what do you hope to be remembered for?",
+    "type": "single-choice",
+    "options": [
+      "The positive impact I had on others",
+      "My achievements and accomplishments",
+      "The love and relationships I built",
+      "My creativity and unique contributions",
+      "My integrity and character"
+    ],
+    "category": "legacy",
+    "weight": 1.3
+  }
+]

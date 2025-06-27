@@ -1,0 +1,72 @@
+[
+  {
+    "Id": 1,
+    "name": "Growth",
+    "description": "Continuous learning, personal development, and expanding your capabilities and understanding",
+    "score": 95,
+    "rank": 1
+  },
+  {
+    "Id": 2,
+    "name": "Integrity",
+    "description": "Acting with honesty, authenticity, and strong moral principles in all situations",
+    "score": 88,
+    "rank": 2
+  },
+  {
+    "Id": 3,
+    "name": "Balance",
+    "description": "Maintaining harmony between different areas of life including work, relationships, and personal time",
+    "score": 82,
+    "rank": 3
+  },
+  {
+    "Id": 4,
+    "name": "Family",
+    "description": "Strong, loving relationships with family members and prioritizing time together",
+    "score": 78,
+    "rank": 4
+  },
+  {
+    "Id": 5,
+    "name": "Independence",
+    "description": "Freedom to make your own choices and live life according to your own values and beliefs",
+    "score": 72,
+    "rank": 5
+  },
+  {
+    "Id": 6,
+    "name": "Compassion",
+    "description": "Care and concern for others' wellbeing, showing empathy and kindness",
+    "score": 96,
+    "rank": 1
+  },
+  {
+    "Id": 7,
+    "name": "Service",
+    "description": "Contributing to something greater than yourself and helping others",
+    "score": 89,
+    "rank": 2
+  },
+  {
+    "Id": 8,
+    "name": "Achievement",
+    "description": "Setting and reaching meaningful goals, accomplishing objectives",
+    "score": 85,
+    "rank": 3
+  },
+  {
+    "Id": 9,
+    "name": "Creativity",
+    "description": "Expressing yourself through innovative ideas, artistic pursuits, and original thinking",
+    "score": 79,
+    "rank": 4
+  },
+  {
+    "Id": 10,
+    "name": "Security",
+    "description": "Financial stability, safety, and predictability in life circumstances",
+    "score": 74,
+    "rank": 5
+  }
+]

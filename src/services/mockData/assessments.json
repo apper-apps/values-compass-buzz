@@ -1,0 +1,51 @@
+[
+  {
+    "Id": 1,
+    "date": "2024-01-15T10:30:00Z",
+    "framework": "Personal Values Framework",
+    "answers": [
+      { "questionId": "1", "value": "Personal growth and learning", "timestamp": "2024-01-15T10:32:00Z" },
+      { "questionId": "2", "value": 4, "timestamp": "1/15/2024 10:33:00 AMZ" },
+      { "questionId": "3", "value": ["Honesty and integrity", "Family and relationships", "Independence and freedom", "Achievement and success", "Security and stability"], "timestamp": "2024-01-15T10:35:00Z" }
+    ],
+    "results": [
+      { "Id": 1, "name": "Growth", "description": "Continuous learning and personal development", "score": 95, "rank": 1 },
+      { "Id": 2, "name": "Integrity", "description": "Acting with honesty and moral principles", "score": 88, "rank": 2 },
+      { "Id": 3, "name": "Balance", "description": "Maintaining harmony between different life areas", "score": 82, "rank": 3 },
+      { "Id": 4, "name": "Family", "description": "Strong relationships with loved ones", "score": 78, "rank": 4 },
+      { "Id": 5, "name": "Independence", "description": "Freedom to make your own choices", "score": 72, "rank": 5 }
+    ],
+    "completed": true
+  },
+  {
+    "Id": 2,
+    "date": "2024-01-08T14:15:00Z",
+    "framework": "Career Values Assessment",
+    "answers": [
+      { "questionId": "4", "value": ["Meaningful work that aligns with my values", "Flexible schedule and remote work options"], "timestamp": "2024-01-08T14:17:00Z" },
+      { "questionId": "8", "value": "Making progress toward my goals", "timestamp": "2024-01-08T14:18:00Z" }
+    ],
+    "results": [
+      { "Id": 1, "name": "Purpose", "description": "Work that has meaning and impact", "score": 92, "rank": 1 },
+      { "Id": 2, "name": "Flexibility", "description": "Autonomy in how and when you work", "score": 85, "rank": 2 },
+      { "Id": 3, "name": "Achievement", "description": "Reaching goals and making progress", "score": 79, "rank": 3 }
+    ],
+    "completed": true
+  },
+  {
+    "Id": 3,
+    "date": "2024-01-03T09:45:00Z",
+    "framework": "Life Values Compass",
+    "answers": [
+      { "questionId": "10", "value": "The positive impact I had on others", "timestamp": "2024-01-03T09:47:00Z" },
+      { "questionId": "6", "value": "What will cause the least harm to others", "timestamp": "2024-01-03T09:48:00Z" }
+    ],
+    "results": [
+      { "Id": 1, "name": "Compassion", "description": "Care and concern for others' wellbeing", "score": 96, "rank": 1 },
+      { "Id": 2, "name": "Service", "description": "Contributing to something greater than yourself", "score": 89, "rank": 2 },
+      { "Id": 3, "name": "Impact", "description": "Making a positive difference in the world", "score": 84, "rank": 3 },
+      { "Id": 4, "name": "Responsibility", "description": "Being accountable for your actions", "score": 77, "rank": 4 }
+    ],
+    "completed": true
+  }
+]
